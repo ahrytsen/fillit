@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 16:01:11 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/16 19:05:50 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/16 20:18:47 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int		main(int ac, char **av)
 	if (fd == -1)
 		ft_error();
 	ft_tetrlst(fd, &tetriminos);
-	ft_print_dbg(&tetriminos);
+	ft_print_dbg(tetriminos);
 	return (0);
 }

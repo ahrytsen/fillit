@@ -6,17 +6,25 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 15:34:21 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/16 19:11:09 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/16 20:48:38 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	*ft_tetrlst(int fd, t_list **tetriminos)
+static void	ft_validate(t_list *tetrimino)
 {
-	char    **tetrimino;
-	char    tmp[22];
-	int     count;
+	char	**tmp;
+
+	tmp = tetrimino->content;
+
+}
+
+void		ft_tetrlst(int fd, t_list **tetriminos)
+{
+	char	**tetrimino;
+	char	tmp[22];
+	int		count;
 	int		i;
 
 	i = 0;
@@ -30,21 +38,20 @@ void	*ft_tetrlst(int fd, t_list **tetriminos)
 		free(tetrimino);
 		ft_bzero(tmp, 22);
 	}
-	if (!*tetriminos)
+	if (!*tetriminos || close(fd))
 		ft_error();
-	return (*tetriminos);
 }
 
-void	ft_print_dbg(t_list **tetriminos)
+void	ft_print_dbg(t_list *tetriminos)
 {
 	char **tmp;
 
-	while (*tetriminos)
+	while (tetriminos)
 	{
-		tmp = (*tetriminos)->content;
-		while(*tmp)
+		tmp = tetriminos->content;
+		while (*tmp)
 			ft_putendl(*tmp++);
 		ft_putchar('\n');
-		tetriminos = &(*tetriminos)->next;
+		tetriminos = tetriminos->next;
 	}
 }
