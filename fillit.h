@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 15:26:53 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/13 21:16:51 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/16 19:05:36 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ typedef struct	s_tetrimino
 
 void			ft_error();
 void			ft_usage();
+void			*ft_tetrlst(int fd, t_list **tetriminos);
+void			ft_print_dbg(t_list **tetriminos);
 
 #endif

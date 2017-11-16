@@ -6,15 +6,12 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 16:01:11 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/13 21:16:46 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/16 19:05:50 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-size_t	g_valid_form[19] = {
-0b1111000000000000 0000000000000000 00000000000000000 000000000000000,
-0b1111000000000000 0000000000000000 00000000000000000 000000000000000,
+#include <stdio.h>
 
 void	ft_error(void)
 {
@@ -31,16 +28,15 @@ void	ft_usage(void)
 int		main(int ac, char **av)
 {
 	int	fd;
-	t_list *tetrimos;
-	int     amount;
+	t_list *tetriminos;
 
-	tetrimos = NULL;
+	tetriminos = NULL;
 	if (ac != 2)
 		ft_usage();
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		ft_error();
-	amount = ft_tetrlst(fd, &tetrimos);
-
+	ft_tetrlst(fd, &tetriminos);
+	ft_print_dbg(&tetriminos);
 	return (0);
 }
