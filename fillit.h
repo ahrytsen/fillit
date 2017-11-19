@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 15:26:53 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/16 20:20:32 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/19 16:34:49 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
-extern size_t	g_valid_form[19];
-
-typedef struct	s_tetrimino
+typedef unsigned short	bit16;
+typedef	unsigned long	bit64;
+typedef struct s_map	t_map;
+struct	s_map
 {
-	char			id;
-	unsigned char	x;
-	unsigned char	y;
-	unsigned char	width;
-	unsigned char	heigh;
-	unsigned long	form;
-}				t_etrimino;
+	char	id;
+	bit16	map[16];
+	t_map	*next;
+	t_map	*prew;
+};
 
 void			ft_error();
 void			ft_usage();
