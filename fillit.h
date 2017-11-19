@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 15:26:53 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/19 17:39:50 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/19 18:06:56 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct					s_map
 
 void					ft_error();
 void					ft_usage();
-
+int						ft_reader(int fd, t_map *matrix);
 void					ft_output(t_map map, int size);
 
 #endif
