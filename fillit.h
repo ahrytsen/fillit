@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 15:26:53 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/19 16:34:49 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/19 17:39:50 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
-typedef unsigned short	bit16;
-typedef	unsigned long	bit64;
+typedef unsigned short	t_16bit;
+typedef	unsigned long	t_64bit;
 typedef struct s_map	t_map;
-struct	s_map
+
+struct					s_map
 {
 	char	id;
 	bit16	map[16];
@@ -29,9 +30,9 @@ struct	s_map
 	t_map	*prew;
 };
 
-void			ft_error();
-void			ft_usage();
-void			ft_tetrlst(int fd, t_list **tetriminos);
-void			ft_print_dbg(t_list *tetriminos);
+void					ft_error();
+void					ft_usage();
+
+void					ft_output(t_map map, int size);
 
 #endif
