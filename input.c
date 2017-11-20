@@ -6,12 +6,12 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 16:02:36 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/20 15:56:51 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/20 19:08:15 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
+
 void	ft_validate(char *tetr)
 {
 	int		i;
@@ -31,7 +31,7 @@ void	ft_validate(char *tetr)
 			conects += (i < 14 && tetr[i + 5] == '#') ? 1 : 0;
 		}
 		else if (((i + 1) % 5 && tetr[i] != '.')
-				 || (!(i + 1) % 5 && tetr[i] != '\n'))
+				|| (!(i + 1) % 5 && tetr[i] != '\n'))
 			ft_error();
 		i++;
 	}
@@ -42,13 +42,13 @@ void	ft_validate(char *tetr)
 t_64bit	ft_getvalue(char **tetr)
 {
 	t_64bit	value;
-	int i;
+	int		i;
 
-	value = 0;
 	if (!tetr)
 		ft_error();
+	value = 0;
 	i = 0;
-	while(i < 16)
+	while (i < 16)
 	{
 		if (i && tetr[i / 4][i % 4] == '#')
 			value |= 1L << (63 - 16 * (i / 4) - (i % 4));
@@ -82,7 +82,6 @@ int		ft_reader(int fd, t_map *matrix)
 		value = ft_getvalue(ft_strsplit(tmp, '\n'));
 		ft_bzero(tmp, 22);
 		count[1] = count[0];
-		printf("%lu\n", value);
 	}
 	if (close(fd) || !i || count[1] != 20)
 		ft_error();
