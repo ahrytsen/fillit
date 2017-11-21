@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 16:43:40 by skushnir          #+#    #+#             */
-/*   Updated: 2017/11/21 16:43:41 by skushnir         ###   ########.fr       */
+/*   Updated: 2017/11/21 21:00:41 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ void		ft_output(t_etr *figures, int size)
 		{
 			j = figures->x - 1;
 			while (++j < (figures->x + figures->h))
-				{
-					figures->value & (1L << (63 - (i * 16 + j))) ?
+				figures->value & (1L << (63 - (i * 16 + j))) ?
 					square[i][j] = figures->id : 0;
-				}
 		}
 		figures++;
 	}
