@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 16:02:36 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/20 19:08:15 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/21 16:40:38 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ t_64bit	ft_getvalue(char **tetr)
 			value |= 1L << 63;
 		i++;
 	}
+	while (((t_16bit)vallue)[0] == 0)
+		value <<= 16;
 	return (value);
 }
 

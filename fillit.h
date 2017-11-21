@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 15:26:53 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/20 20:18:19 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/21 16:40:41 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void					ft_usage();
 void					ft_validate(char *tetr);
 int						ft_reader(int fd, t_map *matrix);
 
-void					ft_output(t_map *map, int size);
+void					ft_output(t_etr *figures, int size);
 
 #endif
