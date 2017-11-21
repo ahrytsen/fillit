@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 16:01:11 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/20 20:17:15 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/21 18:04:41 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		main(int ac, char **av)
 {
 	int		fd;
 	int		amount;
-	t_etr	figures[26];
+	t_etr	figures[27];
 
 	if (ac != 2)
 		ft_usage();
@@ -37,7 +37,6 @@ int		main(int ac, char **av)
 	if (fd == -1)
 		ft_error();
 	ft_bzero(figures, sizeof(t_etr) * 26);
-	amount = ft_reader(fd, matrix);
-	//ft_print_matrix(matrix);
+	amount = ft_reader(fd, figures);
 	return (0);
 }
