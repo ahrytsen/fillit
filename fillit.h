@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 15:26:53 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/21 16:53:48 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/21 17:22:56 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ struct					s_etr
 void					ft_error();
 void					ft_usage();
 void					ft_validate(char *tetr);
-int						ft_reader(int fd, t_map *matrix);
+int						ft_reader(int fd, t_etr *figures);
 
 void					ft_output(t_etr *figures, int size);
 
