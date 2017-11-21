@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 15:26:53 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/21 16:40:41 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/21 16:53:48 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
-typedef unsigned short  t_8bit;
+typedef unsigned char  t_8bit;
 typedef unsigned short	t_16bit;
 typedef	unsigned long	t_64bit;
 typedef struct s_etr	t_etr;
