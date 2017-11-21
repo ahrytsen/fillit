@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 16:02:36 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/21 18:41:55 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/21 19:25:30 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ t_64bit	ft_getvalue(char **tetr)
 		i++;
 	}
 	tmp = (t_16bit*)&value;
-	while (!tmp[0])
-		value <<= 16;
-	mask = (1L << 63) | (1L << 47) | (1L << 31) | (1L << 16);
+	/*while (!*tmp)
+	  value <<= 15;*/
+	mask = (1L << 63) | (1L << 47) | (1L << 31) | (1L << 15);
 	while (!(value & mask))
 		value <<= 1;
 	return (value);
@@ -79,7 +79,7 @@ void	ft_figure_set(char id, t_64bit value, t_etr *figure)
 	tmp = (t_16bit*)&value;
 	while (tmp[h])
 		h++;
-	mask = (1L << 63) | (1L << 47) | (1L << 31) | (1L << 16);
+	mask = (1L << 63) | (1L << 47) | (1L << 31) | (1L << 15);
 	while ((value & (mask >> w)))
 		w++;
 	figure->id = id;
