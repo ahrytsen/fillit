@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 16:02:36 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/21 20:56:05 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/22 20:04:53 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,10 @@ t_64bit	ft_getvalue(char **tetr)
 		ft_error();
 	mask = 0;
 	value = 0;
-	i = 0;
-	while (i < 16)
-	{
-		if (i && tetr[i / 4][i % 4] == '#')
+	i = -1;
+	while (++i < 16)
+		if (tetr[i / 4][i % 4] == '#')
 			value |= 1L << (63 - 16 * (i / 4) - (i % 4));
-		else if (!i && tetr[0][0] == '#')
-			value |= 1L << 63;
-		i++;
-	}
 	while (!(value & ~(~mask >> 16)))
 		value <<= 15;
 	mask = (1L << 63) | (1L << 47) | (1L << 31) | (1L << 15);
@@ -72,20 +67,20 @@ void	ft_figure_set(char id, t_64bit value, t_etr *figure)
 	int		w;
 	t_64bit	mask;
 
-	h = 1;
-	w = 1;
+	h = 0;
+	w = 0;
 	mask = 0;
 	mask = ~(~mask >> 16);
-	while (value & (mask >> 16 * h))
+	while ((value & (mask >> 16 * h)) && h < 4)
 		h++;
 	mask = (1L << 63) | (1L << 47) | (1L << 31) | (1L << 15);
-	while ((value & (mask >> w)))
+	while ((value & (mask >> w)) && w < 4)
 		w++;
-	figure->id = id;
+	figure->id = id + 'A';
 	figure->h = h;
 	figure->w = w;
 	figure->value = value;
-	if (id != 'A')
+	if (id)
 		figure->prew = figure - 'A' - 1;
 }
 
@@ -103,7 +98,7 @@ int		ft_reader(int fd, t_etr *figures)
 	{
 		(i > 25 || count[0] < 20) ? ft_error() : ft_validate(tmp);
 		value = ft_getvalue(ft_strsplit(tmp, '\n'));
-		ft_figure_set(i + 'A', value, figures + i);
+		ft_figure_set(i, value, figures + i);
 		ft_bzero(tmp, 22);
 		count[1] = count[0];
 		i++;
