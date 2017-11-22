@@ -11,20 +11,24 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-static void	ft_print(char **square, int size)
+static void	ft_fill_sqr(char **square, t_etr *figures)
 {
 	int		i;
 	int		j;
+	int		h;
+	int		w;
 
-	i = -1;
-	while (++i < size)
+	i = figures->y - 1;
+	h = 0;
+	while (++i < (figures->y + figures->h))
 	{
-		j = -1;
-		while (++j < size)
-			ft_putchar(square[i][j]);
-		ft_putchar('\n');
+		w = 0;
+		j = figures->x - 1;
+		while (++j < (figures->x + figures->w))
+			figures->value & (1L << (63 - (h * 16 + w++))) ?
+				square[i][j] = figures->id : 0;
+		h++;
 	}
 }
 
@@ -42,16 +46,13 @@ void		ft_output(t_etr *figures, int size)
 	while (++i < size)
 		ft_memset(square[i], '.', size);
 	while (figures->value)
+		ft_fill_sqr(square, figures++);
+	i = -1;
+	while (++i < size)
 	{
-		i = figures->y - 1;
-		while (++i < (figures->y + figures->w))
-		{
-			j = figures->x - 1;
-			while (++j < (figures->x + figures->h))
-				figures->value & (1L << (63 - (i * 16 + j))) ?
-					square[i][j] = figures->id : 0;
-		}
-		figures++;
+		j = -1;
+		while (++j < size)
+			ft_putchar(square[i][j]);
+		ft_putchar('\n');
 	}
-	ft_print(square, size);
 }
