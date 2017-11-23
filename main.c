@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 16:01:11 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/23 14:38:40 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/23 19:12:16 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,21 @@ int			main(int ac, char **av)
 		ft_usage();
 	fd = open(av[1], O_RDONLY);
 	figures = (t_etr*)malloc(sizeof(t_etr) * 27);
-	map = (t_16bit*)malloc(sizeof(t_16bit) * 19);
+	map = (t_16bit*)malloc(sizeof(t_16bit) * 16);
 	if (fd == -1 || !figures || !map)
 		ft_error();
 	ft_bzero(figures, sizeof(t_etr) * 27);
-	ft_bzero(map, sizeof(t_16bit) * 19);
+	ft_bzero(map, sizeof(t_16bit) * 16);
 	amount = ft_reader(fd, figures);
 	sqr_size = ft_minsqr(amount);
 	while (!ft_solve(figures, map, sqr_size) && sqr_size < 14)
 	{
-		ft_bzero(map, sizeof(t_16bit) * 19);
+		ft_bzero(map, sizeof(t_16bit) * 16);
 		sqr_size++;
 	}
-//	if (sqr_size == 14)
-//		ft_error();
-//	ft_dbg(figures);
+	if (sqr_size == 16)
+		ft_error();
+	ft_dbg(figures);
 	ft_output(figures, sqr_size);
 	return (0);
 }

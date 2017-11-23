@@ -6,13 +6,13 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 16:02:36 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/23 14:34:54 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/23 18:47:28 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void	ft_validate(char *tetr)
+static void	ft_validate(const char *tetr)
 {
 	int		i;
 	int		conects;
@@ -39,7 +39,7 @@ static void	ft_validate(char *tetr)
 		ft_error();
 }
 
-static t_64bit	ft_getvalue(char **tetr)
+static t_64bit	ft_getvalue(const char **tetr)
 {
 	t_64bit	value;
 	int		i;
@@ -80,12 +80,15 @@ static void	ft_figure_set(char id, t_64bit value, t_etr *figure)
 	figure->h = h;
 	figure->w = w;
 	figure->value = value;
-//	while (id)
-	if (id)// (figure->value == (figure - id)->value)
-		figure->prew = figure - 1;//id--;
+	while (id)
+	{
+		if (figure->value == (figure - id)->value)
+			figure->prew = figure - id;
+		id--;
+	}
 }
 
-int		ft_reader(int fd, t_etr *figures)
+int		ft_reader(const int fd, t_etr *figures)
 {
 	char	tmp[22];
 	t_64bit	value;
@@ -98,7 +101,7 @@ int		ft_reader(int fd, t_etr *figures)
 	while ((count[0] = read(fd, tmp, 21)))
 	{
 		(i > 25 || count[0] < 20) ? ft_error() : ft_validate(tmp);
-		value = ft_getvalue(ft_strsplit(tmp, '\n'));
+		value = ft_getvalue((const char**)ft_strsplit(tmp, '\n'));
 		ft_figure_set(i, value, figures + i);
 		ft_bzero(tmp, 22);
 		count[1] = count[0];

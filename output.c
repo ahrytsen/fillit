@@ -6,13 +6,13 @@
 /*   By: skushnir <skushnir@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 16:43:40 by skushnir          #+#    #+#             */
-/*   Updated: 2017/11/21 21:00:41 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/23 18:43:53 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void	ft_fill_sqr(char **square, t_etr *figures)
+static void	ft_fill_sqr(char **square, const t_etr *figures)
 {
 	int		i;
 	int		j;
@@ -32,7 +32,7 @@ static void	ft_fill_sqr(char **square, t_etr *figures)
 	}
 }
 
-void		ft_output(t_etr *figures, int size)
+void		ft_output(const t_etr *figures, const int size)
 {
 	int		i;
 	int		j;
