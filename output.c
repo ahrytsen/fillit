@@ -38,10 +38,12 @@ void		ft_output(t_etr *figures, int size)
 	int		j;
 	char	**square;
 
-	square = (char**)ft_memalloc(sizeof(char*) * size);
+	if (!(square = (char**)ft_memalloc(sizeof(char*) * size)))
+		ft_error();
 	i = -1;
 	while (++i < size)
-		square[i] = (char*)ft_memalloc(sizeof(char) * size);
+		if (!(square[i] = (char*)ft_memalloc(sizeof(char) * size)))
+			ft_error();
 	i = -1;
 	while (++i < size)
 		ft_memset(square[i], '.', size);
