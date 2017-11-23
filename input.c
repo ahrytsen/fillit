@@ -6,13 +6,13 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 16:02:36 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/22 20:04:53 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/23 14:34:54 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_validate(char *tetr)
+static void	ft_validate(char *tetr)
 {
 	int		i;
 	int		conects;
@@ -39,7 +39,7 @@ void	ft_validate(char *tetr)
 		ft_error();
 }
 
-t_64bit	ft_getvalue(char **tetr)
+static t_64bit	ft_getvalue(char **tetr)
 {
 	t_64bit	value;
 	int		i;
@@ -61,7 +61,7 @@ t_64bit	ft_getvalue(char **tetr)
 	return (value);
 }
 
-void	ft_figure_set(char id, t_64bit value, t_etr *figure)
+static void	ft_figure_set(char id, t_64bit value, t_etr *figure)
 {
 	int		h;
 	int		w;
@@ -80,8 +80,9 @@ void	ft_figure_set(char id, t_64bit value, t_etr *figure)
 	figure->h = h;
 	figure->w = w;
 	figure->value = value;
-	if (id)
-		figure->prew = figure - 'A' - 1;
+//	while (id)
+	if (id)// (figure->value == (figure - id)->value)
+		figure->prew = figure - 1;//id--;
 }
 
 int		ft_reader(int fd, t_etr *figures)

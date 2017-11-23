@@ -6,12 +6,12 @@
 #    By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/03 20:19:57 by ahrytsen          #+#    #+#              #
-#    Updated: 2017/11/23 12:39:02 by ahrytsen         ###   ########.fr        #
+#    Updated: 2017/11/23 13:05:58 by ahrytsen         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = fillit
-SRC = main.c input.c output.c
+SRC = main.c input.c output.c fillit.c
 OBJ = $(SRC:.c=.o)
 HDR = fillit.h
 LIB = libft/libft.a
