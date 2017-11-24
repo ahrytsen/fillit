@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 16:01:11 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/24 21:13:04 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/24 21:36:35 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ int			main(int ac, char **av)
 	if (sqr_size == 14)
 		ft_error();
 	ft_output(figures, sqr_size);
-	sleep(30);
 	return (0);
 }
