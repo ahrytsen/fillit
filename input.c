@@ -6,13 +6,13 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 16:02:36 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/23 18:47:28 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/24 20:19:33 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void	ft_validate(const char *tetr)
+static void		ft_validate(const char *tetr)
 {
 	int		i;
 	int		conects;
@@ -43,25 +43,30 @@ static t_64bit	ft_getvalue(const char **tetr)
 {
 	t_64bit	value;
 	int		i;
+	int		j;
 	t_64bit	mask;
 
 	if (!tetr)
 		ft_error();
-	mask = 0;
+	mask = ~0L;
 	value = 0;
 	i = -1;
-	while (++i < 16)
-		if (tetr[i / 4][i % 4] == '#')
-			value |= 1L << (63 - 16 * (i / 4) - (i % 4));
-	while (!(value & ~(~mask >> 16)))
-		value <<= 15;
+	while (++i < 4)
+	{
+		j = -1;
+		while (++j < 4)
+			if (tetr[i][j] == '#')
+				value |= (1L << (16 * (i + 1) - 1 - j));
+	}
+	while (!(value & (mask >> 48)))
+		value >>= 16;
 	mask = (1L << 63) | (1L << 47) | (1L << 31) | (1L << 15);
 	while (!(value & mask))
 		value <<= 1;
 	return (value);
 }
 
-static void	ft_figure_set(char id, t_64bit value, t_etr *figure)
+static void		ft_figure_set(char id, t_64bit value, t_etr *figure)
 {
 	int		h;
 	int		w;
@@ -69,9 +74,9 @@ static void	ft_figure_set(char id, t_64bit value, t_etr *figure)
 
 	h = 0;
 	w = 0;
-	mask = 0;
-	mask = ~(~mask >> 16);
-	while ((value & (mask >> 16 * h)) && h < 4)
+	mask = ~0L;
+	mask >>= 48;
+	while ((value & (mask << (16 * h))) && h < 4)
 		h++;
 	mask = (1L << 63) | (1L << 47) | (1L << 31) | (1L << 15);
 	while ((value & (mask >> w)) && w < 4)
@@ -80,15 +85,13 @@ static void	ft_figure_set(char id, t_64bit value, t_etr *figure)
 	figure->h = h;
 	figure->w = w;
 	figure->value = value;
-	while (id)
-	{
-		if (figure->value == (figure - id)->value)
-			figure->prew = figure - id;
+	while (id && figure->value != (figure - id)->value)
 		id--;
-	}
+	if (id)
+		figure->prev = (figure - id);
 }
 
-int		ft_reader(const int fd, t_etr *figures)
+int				ft_reader(const int fd, t_etr *figures)
 {
 	char	tmp[22];
 	t_64bit	value;
