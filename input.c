@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 16:02:36 by ahrytsen          #+#    #+#             */
-/*   Updated: 2017/11/24 21:07:13 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/24 21:33:33 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,14 @@ static t_64bit	ft_getvalue(char **tetr)
 		while (++j < 4)
 			if (tetr[i][j] == '#')
 				value |= (1L << (16 * (i + 1) - 1 - j));
+		free(tetr[i]);
 	}
+	free(tetr);
 	while (!(value & (mask >> 48)))
 		value >>= 16;
 	mask = (1L << 63) | (1L << 47) | (1L << 31) | (1L << 15);
 	while (!(value & mask))
 		value <<= 1;
-	while (i--)
-		free(tetr[i]);
-	free(tetr);
 	return (value);
 }
 

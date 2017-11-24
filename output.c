@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 16:43:40 by skushnir          #+#    #+#             */
-/*   Updated: 2017/11/24 20:44:18 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/24 21:32:06 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ void		ft_output(t_etr *figures, int size)
 		ft_memset(square[i++], '.', size);
 	while (figures->id)
 		ft_fill_sqr(square, figures++);
-	while (*square)
-		ft_putendl(*square++);
+	i = 0;
+	while (square[i])
+	{
+		ft_putendl(square[i]);
+		free(square[i++]);
+	}
+	free(square);
 }
