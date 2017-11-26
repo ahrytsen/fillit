@@ -6,32 +6,35 @@
 #    By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/03 20:19:57 by ahrytsen          #+#    #+#              #
-#    Updated: 2017/11/23 13:05:58 by ahrytsen         ###   ########.fr        #
+#    Updated: 2017/11/26 14:41:00 by ahrytsen         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME = fillit
-SRC = main.c input.c output.c fillit.c
-OBJ = $(SRC:.c=.o)
-HDR = fillit.h
-LIB = libft/libft.a
+CC			= gcc
+CFLAGS		= -Wextra -Werror -Wall
+NAME		= fillit
+SRC 		= main.c input.c output.c fillit.c
+OBJ 		= $(SRC:.c=.o)
+HDR 		= fillit.h
+LIB 		= libft/libft.a
 
-all: $(SRC) $(NAME)
+all: lib $(NAME)
 
-$(NAME): $(OBJ) $(HDR)
-	@make -C libft/;
-	@gcc -Wall -Wextra -Werror -o $(NAME) $(OBJ) $(LIB);
+$(NAME): $(LIB) $(OBJ) $(HDR)
+	$(CC) $(CFLAGS) -o $(NAME) $(LIB) $(OBJ)
 
-.c.o:
-	@gcc -Wall -Wextra -Werror -c $<
+lib:
+	make -C libft
+
+$(LIB): lib
 
 clean:
-	@make clean -C libft/
-	@rm -f $(OBJ)
+	make clean -C libft/
+	rm -f $(OBJ)
 
 fclean: clean
-	@make fclean -C libft/
-	@rm -f $(NAME)
+	make fclean -C libft/
+	rm -f $(NAME)
 
 re: fclean all
 
